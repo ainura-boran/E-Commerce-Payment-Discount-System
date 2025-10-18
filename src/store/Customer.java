@@ -2,7 +2,6 @@ package store;
 
 public class Customer {
     private final String name;
-<<<<<<< HEAD
     private final String email;
     private final String address;
     private int points;
@@ -26,15 +25,3 @@ public class Customer {
         return "Customer{name='" + name + "', email='" + email + "', address='" + address + "', points=" + points + "}";
     }
 }
-=======
-
-    public Customer(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
-
->>>>>>> ffbabdc674e6c3f42939875151af494898b1f728

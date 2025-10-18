@@ -4,7 +4,6 @@ import payment.*;
 import decorator.*;
 import store.*;
 import java.math.BigDecimal;
-<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class CheckoutFacade {
             pipeline = new FraudDetectionDecorator(pipeline);
         }
 
-        System.out.println("=== Checkout for " + customer.getName() + " | Total: " + order.getAmount() + " ===");
+        System.out.println("--- Checkout for " + customer.getName() + " | Total: " + order.getAmount() + " ---");
         PaymentResult result = pipeline.pay(order, order.getAmount());
 
         System.out.println("""
@@ -56,28 +55,3 @@ public class CheckoutFacade {
         return result;
     }
 }
-=======
-
-public class CheckoutFacade {
-    public PaymentResult processOrder(Cart cart, Customer customer, Payment basePayment, boolean applyDiscount, BigDecimal discountPercent, boolean cashback, int cashbackPoints, boolean fraudDetection) {
-        Payment payment = basePayment;
-
-        if (applyDiscount)
-            payment = new DiscountDecorator(payment, discountPercent);
-
-        if (cashback)
-            payment = new CashbackDecorator(payment, cashbackPoints);
-
-        if (fraudDetection)
-            payment = new FraudDetectionDecorator(payment);
-
-        Order order = new Order(customer, cart.total());
-        System.out.println("Processing Order for " + customer.getName() + " ===");
-
-        PaymentResult result = payment.pay(order, order.getAmount());
-        System.out.println("Payment Complete: " + result.getMessage() + " ===");
-
-        return result;
-    }
-}
->>>>>>> ffbabdc674e6c3f42939875151af494898b1f728
