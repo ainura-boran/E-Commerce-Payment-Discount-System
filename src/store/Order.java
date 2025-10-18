@@ -11,7 +11,17 @@ public class Order {
         this.amount = amount;
     }
 
+<<<<<<< HEAD
     public Customer getCustomer() { return customer; }
     public BigDecimal getAmount() { return amount; }
+=======
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+>>>>>>> ffbabdc674e6c3f42939875151af494898b1f728
 }
 
