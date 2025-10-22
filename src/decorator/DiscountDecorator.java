@@ -3,7 +3,6 @@ package decorator;
 import payment.Payment;
 import payment.PaymentResult;
 import store.Order;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

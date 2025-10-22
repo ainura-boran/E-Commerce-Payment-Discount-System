@@ -16,7 +16,6 @@ public class Customer {
     public String getName() { return name; }
     public String getEmail() { return email; }
     public String getAddress() { return address; }
-
     public int getPoints() { return points; }
     public void addPoints(int p) { points += p; }
 

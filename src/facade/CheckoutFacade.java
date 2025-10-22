@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class CheckoutFacade {
-
     public static final class Options {
         public List<BigDecimal> discountPercents;
         public boolean enableFraudDetection;
@@ -18,23 +17,37 @@ public class CheckoutFacade {
 
     public PaymentResult processOrder(Cart cart, Customer customer, Payment base, Options opts) {
         Order order = new Order(customer, cart.total());
+        Payment pipeline = PaymentPipeline(base, opts);
+
+        System.out.println("--- Checkout for " + customer.getName() + " | Total: " + order.getAmount() + " ---");
+
+        PaymentResult result = pipeline.pay(order, order.getAmount());
+        printReceipt(customer, result);
+
+        return result;
+    }
+
+    private Payment PaymentPipeline(Payment base, Options opts) {
         Payment pipeline = base;
 
-        if (opts != null && opts.discountPercents != null) {
+        if (opts == null) return pipeline;
+
+        if (opts.discountPercents != null) {
             for (BigDecimal p : opts.discountPercents) {
                 pipeline = new DiscountDecorator(pipeline, p);
             }
         }
-        if (opts != null && opts.enableCashback) {
+        if (opts.enableCashback) {
             pipeline = new CashbackDecorator(pipeline, opts.cashbackPoints);
         }
-        if (opts != null && opts.enableFraudDetection) {
+        if (opts.enableFraudDetection) {
             pipeline = new FraudDetectionDecorator(pipeline);
         }
 
-        System.out.println("--- Checkout for " + customer.getName() + " | Total: " + order.getAmount() + " ---");
-        PaymentResult result = pipeline.pay(order, order.getAmount());
+        return pipeline;
+    }
 
+    private void printReceipt(Customer customer, PaymentResult result) {
         System.out.println("""
                 ----- RECEIPT -----
                 Customer: %s
@@ -52,6 +65,5 @@ public class CheckoutFacade {
                 result.getMessage(),
                 LocalDateTime.now()
         ));
-        return result;
     }
 }

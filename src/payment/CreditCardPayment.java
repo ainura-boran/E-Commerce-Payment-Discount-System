@@ -4,7 +4,7 @@ import store.Order;
 import java.math.BigDecimal;
 
 public class CreditCardPayment implements Payment {
-    private final String cardType; // "Visa" или "MasterCard"
+    private final String cardType;
 
     public CreditCardPayment(String cardType) {
         this.cardType = cardType;
