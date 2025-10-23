@@ -30,7 +30,8 @@ public class CheckoutFacade {
     private Payment PaymentPipeline(Payment base, Options opts) {
         Payment pipeline = base;
 
-        if (opts == null) return pipeline;
+        if (opts == null)
+            return pipeline;
 
         if (opts.discountPercents != null) {
             for (BigDecimal p : opts.discountPercents) {

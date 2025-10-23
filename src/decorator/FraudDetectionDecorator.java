@@ -13,9 +13,8 @@ public class FraudDetectionDecorator extends PaymentDecorator {
 
     @Override
     public PaymentResult pay(Order order, BigDecimal amount) {
-        boolean suspicious = amount.compareTo(new BigDecimal("1000")) > 0
-                || order.getCustomer().getName().toLowerCase().contains("test");
-        System.out.println("Fraud detection amount = " + amount + ", suspicious=" + suspicious);
+        boolean suspicious = amount.compareTo(new BigDecimal("1000")) > 0 || order.getCustomer().getName().toLowerCase().contains("test");
+        System.out.println("Fraud detection amount = " + amount + ", suspicious = " + suspicious);
         return super.pay(order, amount);
     }
 }

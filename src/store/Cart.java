@@ -10,6 +10,7 @@ public class Cart {
     public void add(BigDecimal price) {
         items.add(price);
     }
+
     public BigDecimal total() {
         return items.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
     }

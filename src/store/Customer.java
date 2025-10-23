@@ -21,6 +21,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{name='" + name + "', email='" + email + "', address='" + address + "', points=" + points + "}";
+        return "Customer{ name= '" + name + "', email= '" + email + "', address= '" + address + "', points= " + points + " }";
     }
 }

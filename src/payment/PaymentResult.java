@@ -13,7 +13,6 @@ public class PaymentResult {
         this.message = message;
     }
 
-    public boolean isSuccess() { return success; }
     public BigDecimal getChargedAmount() { return chargedAmount; }
     public String getMessage() { return message; }
 }
